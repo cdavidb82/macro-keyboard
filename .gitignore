@@ -2,3 +2,7 @@
 *venv
 *pyenv
 *env 
+
+
+# VS Code Env
+.vscode
