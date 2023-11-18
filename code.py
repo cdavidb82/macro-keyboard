@@ -19,13 +19,25 @@ for button in buttons:
 keyboard = Keyboard()
 
 # Define keycodes (adjust as needed)
-keycodes = [Keycode.A, Keycode.B, Keycode.C, Keycode.D, Keycode.E, Keycode.F, Keycode.G, Keycode.H, Keycode.I, Keycode.J]
+def open_terminal(): # open terminal windows in Linux/macOS
+    keyboard.press(Keycode.CONTROL, Keycode.ALT, Keycode.T)
+    keyboard.release_all()
 
+# Placeholder for now.
+def run_script_a():
+    pass
+
+# Cycle keycodes for keys pressed. 
 while True:
     for i in range(10):
         if not buttons[i].value:
             # Button is pressed
-            keyboard.press(keycodes[i])
-            time.sleep(0.1) # adjust as needed
-            keyboard.release_all()
-            time.sleep(0.1) # adust as needed
+            if i == 0:
+                open_terminal()
+            elif i == 1:
+                run_script_a()
+            # elif i == 2:
+            #     run_script_a() 
+            # TODO: Add for each keycode.
+                
+            time.sleep(0.1) # adjust as needed. 
