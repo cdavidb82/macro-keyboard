@@ -2,42 +2,46 @@
 
 import time
 import board
-from digitalio import DigitalInOut, Direction, Pull
+import digitalio
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keycode import Keycode
 
-# Define button pins
-button_pins = [board.D2, board.D3, board.D4, board.D5, board.D6, board.D7, board.D8, board.D9, board.D10, board.D11]
+# Define keypad matrix
+keypad_rows = [board.GP2, board.GP3, board.GP4, board.GP5 ]
+keypad_cols = [board.GP6, board.GP7, board.GP8, board.GP9]
 
-# Intialize buttons
-buttons = [DigitalInOut(pin) for pin in button_pins]
-for button in buttons:
-    button.direction = Direction.INPUT
-    button.pull = Pull.UP
+# Create the keypad object
+keys = [
+    [digitalio.DigitalInOut(pin) for pin in keypad_cols],
+    [digitalio.DigitalInOut(pin) for pin in keypad_rows]
+]
+for row in keys:
+    for key in row:
+        key.direction = digitalio.Direction.INPUT
+        key.pull = digitalio.Pull.UP
 
 # Initialize Keyboard
 keyboard = Keyboard()
 
-# Define keycodes (adjust as needed)
-def open_terminal(): # open terminal windows in Linux/macOS
-    keyboard.press(Keycode.CONTROL, Keycode.ALT, Keycode.T)
+# Define keycodes for each button (adjust as needed)
+keycodes = [
+    [Keycode.A, Keycode.B, Keycode.C, Keycode.D],
+    [Keycode.E, Keycode.F, Keycode.G, Keycode.H],
+    [Keycode.I, Keycode.J, Keycode.K, Keycode.L],
+    [Keycode.M, Keycode.N, Keycode.O, Keycode.P]
+]
+
+# Function to exexcute when a button is pressed
+def execute_macro(row, col):
+    keycode = keycodes[row][col]
+    keyboard.press(keycode)
+    time.sleep(0.1) # adjust as needed
     keyboard.release_all()
 
-# Placeholder for now.
-def run_script_a():
-    pass
-
-# Cycle keycodes for keys pressed. 
+# Main Loop
 while True:
-    for i in range(10):
-        if not buttons[i].value:
-            # Button is pressed
-            if i == 0:
-                open_terminal()
-            elif i == 1:
-                run_script_a()
-            # elif i == 2:
-            #     run_script_a() 
-            # TODO: Add for each keycode.
-                
-            time.sleep(0.1) # adjust as needed. 
+    for row in range(4):
+        for col in range(4):
+            if not keys[row][col].value:
+                execute_macro(row, col)
+                time.sleep(0.2) # Adjust as needed. 
