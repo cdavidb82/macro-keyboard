@@ -11,7 +11,7 @@ keypad_rows = [board.GP2, board.GP3, board.GP4, board.GP5]
 keypad_cols = [board.GP6, board.GP7, board.GP8, board.GP9]
 
 # Initialize Keyboard
-keyboard = Keyboard()
+keyboard = Keyboard
 
 # Define keycodes for each button (adjust as needed)
 keycodes = (
