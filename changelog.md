@@ -1,6 +1,6 @@
 # Changelog
 
-## Nov. 2023 - Intial Development (1.0)
+## Nov. 2023 - Initial Development (1.0)
 - Merge pull request #7 from cdavidb82/david-newcustom|Thu Nov 23 07:56:08 2023 -0500
 - Updated code.py|Thu Nov 23 07:25:54 2023 -0500
 - Updated code.py|Thu Nov 23 07:24:42 2023 -0500
