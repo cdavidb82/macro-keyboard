@@ -1,6 +1,7 @@
 # Code for Macro Keyboard with CircuitPy
 
 import time
+
 import board
 import digitalio
 from adafruit_hid.keyboard import Keyboard

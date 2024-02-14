@@ -1,7 +1,7 @@
 # Changelog
 
-
 ## [1.0] Initial Development
+
 - Merge pull request #7 from cdavidb82/david-newcustom
 - Updated code.py
 - Updated code.py

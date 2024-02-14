@@ -1,14 +1,10 @@
-
 # My Macro Keyboard
 
-
-This code is for building and configuring a macro keyboard using Circuit Python.  
-
+This code is for building and configuring a macro keyboard using Circuit Python.
 
 ## Authors
 
 - [@cdavidb82](https://www.github.com/cdavidb82)
-
 
 ## Environment Variables
 
@@ -21,7 +17,6 @@ To run this project, you will need to add the following environment variables to
 These can also be installed using the requirements.txt file.
 
 `python3 -m pip install -r requirements.txt`
-
 
 ## License
 
