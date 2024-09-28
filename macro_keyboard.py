@@ -17,12 +17,15 @@ key_a_pin = Pin(KEY_A, Pin.IN, Pin.PULL_UP)
 key_b_pin = Pin(KEY_B, Pin.IN, Pin.PULL_UP)
 
 def key_pressed(pin):
-    print('Key pressed on pin:', pin)
+    print(f'Key pressed on pin:{pin}')
 
 # Attach interrupt handlers to keys
 key_a_pin.irq(trigger=Pin.IRQ_FALLING, handler=lambda p: key_pressed(KEY_A))
 key_b_pin.irq(trigger=Pin.IRQ_FALLING, handler=lambda p: key_pressed(KEY_B))
 
-# Program loop
-while True:
-    pass
+# Program Loop
+if __name__ == "__main__":
+    while True:
+        time.sleep(0.1) # wait for 100ms
+        print('Waiting for key press...') # print a message to the console
+        pass
