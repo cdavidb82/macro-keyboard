@@ -19,12 +19,18 @@ KEY_B = 21
 key_a_pin = Pin(KEY_A, Pin.IN, Pin.PULL_UP)
 key_b_pin = Pin(KEY_B, Pin.IN, Pin.PULL_UP)
 
-def key_pressed(pin):
-    print(f'Key pressed on pin:{pin}')
+class Key:
+    def __init__(self, pin, name):
+        self.pin = Pin(pin, Pin.IN, Pin.PULL_UP)
+        self.name = name
+        self.pin.irq(trigger=Pin.IRQ_FALLING, handler=self.key_pressed)
 
-# Attach interrupt handlers to keys
-key_a_pin.irq(trigger=Pin.IRQ_FALLING, handler=lambda p: key_pressed(KEY_A))
-key_b_pin.irq(trigger=Pin.IRQ_FALLING, handler=lambda p: key_pressed(KEY_B))
+    def key_pressed(self, pin):
+        print(f'Key pressed: {self.name}')
+
+# Create key objects
+key_a = Key(KEY_A, 'A')
+key_b = Key(KEY_B, 'B')
 
 # Program Loop
 if __name__ == "__main__":
@@ -34,6 +40,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print('Program interrupted by user')
     finally:
-        key_a_pin.irq(trigger=0, handler=None)
-        key_b_pin.irq(trigger=0, handler=None)
+        key_a.pin.irq(trigger=0, handler=None)
+        key_b.pin.irq(trigger=0, handler=None)
         print('Program terminated')
