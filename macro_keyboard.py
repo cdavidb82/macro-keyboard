@@ -1,12 +1,15 @@
-# My Macro keyboard for Raspberry Pi Pic0
+# My Macro keyboard for Raspberry Pi Pico
 # written for MicroPython
 # Reference: http://docs.micropython.org/en/latest/rp2/quickref.html
+# Reference: https://github.com/raspberrypi/pico-sdk/blob/master/documentation/boards
+#            /rp2040/README.md
+
 
 # This is a basic build or skeleton 
-import machine
+
 import time
 from machine import Pin
-from machine import Timer 
+from machine import Timer
 
 # Define keys
 KEY_A = 20
@@ -25,7 +28,12 @@ key_b_pin.irq(trigger=Pin.IRQ_FALLING, handler=lambda p: key_pressed(KEY_B))
 
 # Program Loop
 if __name__ == "__main__":
-    while True:
-        time.sleep(0.1) # wait for 100ms
-        print('Waiting for key press...') # print a message to the console
-        pass
+    try:
+        while True:
+            time.sleep(0.1) # wait for 100ms
+    except KeyboardInterrupt:
+        print('Program interrupted by user')
+    finally:
+        key_a_pin.irq(trigger=0, handler=None)
+        key_b_pin.irq(trigger=0, handler=None)
+        print('Program terminated')
