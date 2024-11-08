@@ -24,9 +24,15 @@ class Key:
         self.pin = Pin(pin, Pin.IN, Pin.PULL_UP)
         self.name = name
         self.pin.irq(trigger=Pin.IRQ_FALLING, handler=self.key_pressed)
+        self.pressed = False
 
     def key_pressed(self, pin):
-        print(f'Key pressed: {self.name}')
+        if not self.pressed:
+            print(f'Key pressed: {self.name}')
+            self.pressed = True
+        else:
+            print(f'Key released: {self.name}')
+            self.pressed = False
 
 # Create key objects
 key_a = Key(KEY_A, 'A')
