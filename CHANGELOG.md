@@ -1,60 +1,31 @@
-# Changelog
-
-All notable changes to this project will be documented in this file.
+# CHANGELOG
 
 ## [Unreleased]
+- Initial development of the macro keyboard for Raspberry Pi Pico using MicroPython.
+
+## [0.1.0] - 2023-10-01
 ### Added
-- New feature or enhancement.
-
+- Basic skeleton of the program for handling key presses.
+- Defined two keys (A and B) mapped to GPIO pins 20 and 21 respectively.
+- Implemented a `Key` class to manage key press events.
+- Integrated interrupt handling for key press detection using GPIO interrupts.
+- Added print statements to indicate when keys are pressed and released.
+  
 ### Changed
-- Changes made to existing features.
-
-### Deprecated
-- Features that are deprecated and will be removed in future releases.
+- None
 
 ### Removed
-- Features that have been removed.
+- None
 
+## [0.1.1] - 2023-10-15
 ### Fixed
-- Bug fixes.
+- Corrected the logic to ensure that the key press state is properly toggled between pressed and released.
 
-### Security
-- Security improvements.
-
-## [1.0.0] - 2024-03-01
 ### Added
-- Initial release of the project.
+- Added exception handling for graceful program termination with a message on keyboard interrupt.
 
 ### Changed
-- None.
-
-### Deprecated
-- None.
+- Improved comments for better understanding of the code structure and functionality.
 
 ### Removed
-- None.
-
-### Fixed
-- None.
-
-### Security
-- None.
-
-## [Version X.Y.Z] - YYYY-MM-DD
-### Added
-- List of new features.
-
-### Changed
-- List of changes.
-
-### Deprecated
-- List of deprecated features.
-
-### Removed
-- List of removed features.
-
-### Fixed
-- List of bug fixes.
-
-### Security
-- List of security improvements.
+- None
