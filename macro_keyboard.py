@@ -8,8 +8,8 @@
 # This is a basic build or skeleton 
 
 import time
-from machine import Pin
-from machine import Timer
+from machine import Pin # type: ignore
+from machine import Timer # type: ignore
 
 # Define keys
 KEY_A = 20
