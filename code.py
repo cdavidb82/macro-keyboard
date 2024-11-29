@@ -5,7 +5,8 @@
 #            /rp2040/README.md
 
 
-# This is a basic build or skeleton 
+# This is a basic build or skeleton
+# This configuration is used for breadboard testing and configurations. 
 
 import time
 from machine import Pin # type: ignore
