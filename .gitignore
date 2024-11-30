@@ -9,6 +9,14 @@ __pycache__/
 # VSCode 
 .vscode
 
+# CircuitPy 
+.metadata_never_index
+.Trash*
+boot_out.txt
+.fseventsd/
+sd/
+settings.toml
+
 # Distribution / packaging
 .Python
 build/
