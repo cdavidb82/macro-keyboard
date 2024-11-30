@@ -16,6 +16,10 @@ boot_out.txt
 .fseventsd/
 sd/
 settings.toml
+build*
+bundles/
+circuitpython/
+/libraries
 
 # Distribution / packaging
 .Python
