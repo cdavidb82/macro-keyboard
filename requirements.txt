@@ -1,0 +1,6 @@
+circuitpy==0.0.2
+codegen==1.0
+funcy==2.0
+jsonpickle==4.0.0
+patterns==0.3
+pysistence==0.4.1

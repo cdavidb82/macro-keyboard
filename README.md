@@ -1,6 +1,6 @@
 # Macro Keyboard
 
-This code is for building and configuring a macro keyboard using Circuit Python.
+This project provides a customizable macro keyboard solution using Circuit Python, allowing users to create custom keyboard layouts and macros efficiently.
 
 ## Table of Contents
 
