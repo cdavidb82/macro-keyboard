@@ -1,6 +1,15 @@
+board==1.0
+certifi==2024.8.30
+charset-normalizer==3.4.0
 circuitpy==0.0.2
+circuitpython-build-tools==1.16.0
+click==8.1.7
 codegen==1.0
 funcy==2.0
+idna==3.10
 jsonpickle==4.0.0
 patterns==0.3
 pysistence==0.4.1
+requests==2.32.3
+semver==3.0.2
+urllib3==2.2.3
