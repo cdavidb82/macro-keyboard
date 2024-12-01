@@ -33,6 +33,11 @@ This project aims to create a customizable macro keyboard using Circuit Python. 
 - USB cable
 - Computer with internet connection
 
+## References
+[CircuitPy Library](https://circuitpython.org/libraries)
+
+[CircuitPy](https://circuitpython.org)
+
 ## Installation
 
 1. Install Circuit Python on your board.
