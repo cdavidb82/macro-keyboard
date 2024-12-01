@@ -10,7 +10,7 @@
 - Implemented a `Key` class to manage key press events.
 - Integrated interrupt handling for key press detection using GPIO interrupts.
 - Added print statements to indicate when keys are pressed and released.
-  
+
 ### Changed
 - None
 
@@ -67,7 +67,6 @@
 - Added support for keyboard key macros
 - Added support for keyboard key sequences
 
-
 ### Changed
 - Improved code structure and organization for better readability and maintainability.
 - Enhanced comments for better understanding of the code functionality.
@@ -81,6 +80,19 @@
 - Implemented a `KeyboardLayout` class to manage keyboard layouts.
 - Added support for custom keyboard layouts.
 - Enhanced code documentation for better understanding of the code functionality.
+
+### Removed
+- None
+
+## [1.1] - 2024-12-01
+### Fixed
+- Corrected minor typos in the documentation.
+
+### Added
+- Added a new section for known issues and limitations.
+
+### Changed
+- Improved formatting for better readability.
 
 ### Removed
 - None
