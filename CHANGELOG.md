@@ -84,7 +84,7 @@
 ### Removed
 - None
 
-## [1.1] - 2024-12-01
+## [1.0] - 2024-12-01
 ### Fixed
 - Corrected minor typos in the documentation.
 
