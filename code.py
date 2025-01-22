@@ -4,21 +4,19 @@ import digitalio
 from adafruit_debouncer import Debouncer
 
 # Define keys
-KEY_A = board.GP20  # Use appropriate board pin mapping
-KEY_B = board.GP21  # Use appropriate board pin mapping
-
-# Set up keys with pull-up resistors
-key_a_pin = digitalio.DigitalInOut(KEY_A)
-key_a_pin.direction = digitalio.Direction.INPUT
-key_a_pin.pull = digitalio.Pull.UP
-
-key_b_pin = digitalio.DigitalInOut(KEY_B)
-key_b_pin.direction = digitalio.Direction.INPUT
-key_b_pin.pull = digitalio.Pull.UP
-
-# Debouncer for key presses
-key_a_debouncer = Debouncer(key_a_pin)
-key_b_debouncer = Debouncer(key_b_pin)
+# Use appropriate board pin mapping
+keys = [
+    {"pin": board.GP6, "label": "A"},
+    {"pin": board.GP7, "label": "B"},
+    {"pin": board.GP8, "label": "C"},
+    {"pin": board.GP9, "label": "D"},
+    {"pin": board.GP10, "label": "E"},
+    {"pin": board.GP18, "label": "F"},
+    {"pin": board.GP19, "label": "G"},
+    {"pin": board.GP20, "label": "H"},
+    {"pin": board.GP21, "label": "I"},
+    {"pin": board.GP22, "label": "J"},
+]
 
 class Key:
     def __init__(self, debouncer, name):
@@ -37,16 +35,22 @@ class Key:
                 print(f'Key released: {self.name}')
                 self.pressed = False
 
-# Create key objects
-key_a = Key(key_a_debouncer, 'A')
-key_b = Key(key_b_debouncer, 'B')
+
+# Set up keys with pull-up resistors
+key_objects = []
+for pin in keys:
+    key = digitalio.DigitalInOut(pin["pin"])
+    key.switch_to_input(pull=digitalio.Pull.UP)
+    debouncer = Debouncer(key, 0.1)  # Debounce time in seconds
+    key_objects.append(Key(debouncer, pin["label"]))
+
 
 # Program Loop
 if __name__ == "__main__":
     try:
         while True:
-            key_a.update()
-            key_b.update()
+            for key in key_objects:
+                key.update()
             time.sleep(0.01)  # wait for 10ms
     except KeyboardInterrupt:
         print('Program interrupted by user')
