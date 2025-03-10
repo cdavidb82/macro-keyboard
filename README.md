@@ -13,6 +13,7 @@ This project provides a customizable macro keyboard solution using Circuit Pytho
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [Changelog](#changelog)
+- [Future Development](#future-development)
 
 ## Authors
 
@@ -50,6 +51,24 @@ This project aims to create a customizable macro keyboard using Circuit Python. 
 2. Upload the code to your board.
 3. Use your macro keyboard to improve your productivity.
 
+### Key Press and Release Functions
+
+The code includes functions to handle key press and release events. You can customize these functions to perform specific actions when a key is pressed or released.
+
+```python
+def on_key_a_pressed():
+    print("Function for Key A pressed")
+
+def on_key_b_pressed():
+    print("Function for Key B pressed")
+
+def on_key_a_released():
+    print("Function for Key A released")
+
+def on_key_b_released():
+    print("Function for Key B released")
+```
+
 ## Troubleshooting
 
 - If your board is not recognized by your computer, try restarting your computer and board.
@@ -64,6 +83,7 @@ Contributions are welcome. To contribute, fork this repository and submit a pull
 - v1.0: Initial release
 - v1.1: Added support for multiple keyboard layouts
 - v1.2: Improved macro functionality
+- v1.3: Added key press and release functions
 
 ## Future Development
 
