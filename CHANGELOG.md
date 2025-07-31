@@ -85,14 +85,14 @@
 - None
 
 ## [0.1.2] - 2024-12-01
-### Fixed
-- Corrected minor typos in the documentation.
-
 ### Added
-- Added a new section for known issues and limitations.
+- Section for known issues and limitations.
 
 ### Changed
-- Improved formatting for better readability.
+- Improved documentation formatting for readability.
+
+### Fixed
+- Minor typos in documentation.
 
 ### Removed
 - None
