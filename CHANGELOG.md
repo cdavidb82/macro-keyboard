@@ -30,7 +30,7 @@
 ### Removed
 - None
 
-## [1.1.1] - 2023-11-29
+## [0.1.2] - 2023-11-29
 ### Fixed
 - Corrected the logic to ensure that the key press state is properly toggled between pressed and released.
 - Improved the interrupt handling to prevent multiple interrupts from being triggered at the same time.
@@ -84,7 +84,7 @@
 ### Removed
 - None
 
-## [1.1.2] - 2024-12-01
+## [0.1.2] - 2024-12-01
 ### Fixed
 - Corrected minor typos in the documentation.
 
