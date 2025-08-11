@@ -85,10 +85,10 @@ Contributions are welcome. To contribute, fork this repository and submit a pull
 
 ## Changelog
 
-- v1.0: Initial release
-- v1.1: Added support for multiple keyboard layouts
-- v1.2: Improved macro functionality
-- v1.3: Added key press and release functions
+- v1.0-alpha.1: Initial pre-release
+- v0.0.1.: Added support for multiple keyboard layouts
+- v0.0.2: Improved macro functionality
+- v0.0.3: Added key press and release functions
 
 ## Future Development
 
