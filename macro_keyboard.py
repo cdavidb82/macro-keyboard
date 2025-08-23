@@ -45,7 +45,7 @@ class Encoder:
         if self.sw and self.sw.value() == 0:
             return 'click'
         return None
-
+    
 
 
 
