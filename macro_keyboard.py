@@ -55,28 +55,31 @@ def send_key(keycode, mods=0):
     kbd.send(0, 0, 0)
 
 
-last_encoder_pos = encoder.position
-while True:
-    # Buttons
-    for i, btn in enumerate(BUTTONS):
-        if btn.read() == 1:      # pressed
-            send_key(BUTTON_MAP[i])
 
-    # Encoder rotation
-    pos = encoder.position
-    if pos != last_encoder_pos:
-        delta = pos - last_encoder_pos
-        if delta > 0:
-            # Rotate CW → send "Page Up" (0x3A)
-            send_key(0x3A)
-        else:
-            # Rotate CCW → send "Page Down" (0x3B)
-            send_key(0x3B)
-        last_encoder_pos = pos
+if __name__ == "__main__":
 
-    # Encoder click (optional)
-    click = encoder.poll()
-    if click == 'click':
-        send_key(0x28)  # ENTER
+    last_encoder_pos = encoder.position
+    while True:
+        # Buttons
+        for i, btn in enumerate(BUTTONS):
+            if btn.read() == 1:      # pressed
+                send_key(BUTTON_MAP[i])
 
-    time.sleep_ms(5)  # small delay to reduce CPU usage
+        # Encoder rotation
+        pos = encoder.position
+        if pos != last_encoder_pos:
+            delta = pos - last_encoder_pos
+            if delta > 0:
+                # Rotate CW → send "Page Up" (0x3A)
+                send_key(0x3A)
+            else:
+                # Rotate CCW → send "Page Down" (0x3B)
+                send_key(0x3B)
+            last_encoder_pos = pos
+
+        # Encoder click (optional)
+        click = encoder.poll()
+        if click == 'click':
+            send_key(0x28)  # ENTER
+
+        time.sleep_ms(5)  # small delay to reduce CPU usage
