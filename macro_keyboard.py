@@ -3,8 +3,7 @@ from machine import Pin
 import hid
 
 # Raspberry Pi Pico W board pin configuration
-# Update these pin numbers to match your wiring
-BUTTON_PINS = [7, 8, 9, 19, 20, 21]  # Example GPIO pins for buttons
+BUTTON_PINS = [7, 8, 9, 19, 20, 21]  # 3x2 Layout
 
 DEBOUNCE_MS = 20
 
