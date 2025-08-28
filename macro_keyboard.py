@@ -2,51 +2,41 @@ import time
 from machine import Pin
 import hid
 
-# 4.1  Setup
+# Raspberry Pi Pico W board pin configuration
+# Update these pin numbers to match your wiring
+BUTTON_PINS = [7, 8, 9, 19, 20, 21]  # Example GPIO pins for buttons
+
 DEBOUNCE_MS = 20
-BUTTONS = [DebouncedButton(i) for i in range(10)]
-encoder = Encoder(clk=10, dt=11, sw=12)
+
+# Button setup for Pico W
+class DebouncedButton:
+    def __init__(self, pin_num):
+        self.pin = Pin(pin_num, Pin.IN, Pin.PULL_UP)
+        self.last_state = self.pin.value()
+        self.last_time = time.ticks_ms()
+
+    def read(self):
+        state = self.pin.value()
+        now = time.ticks_ms()
+        if state != self.last_state and time.ticks_diff(now, self.last_time) > DEBOUNCE_MS:
+            self.last_state = state
+            self.last_time = now
+            return 1 if state == 0 else 0
+        return 0
+
+
+BUTTONS = [DebouncedButton(pin) for pin in BUTTON_PINS]
 
 kbd = hid.keyboard.HIDKeyboard()
 
 BUTTON_MAP = {
-    0: 0x04,  # a
-    1: 0x05,  # b
-    2: 0x06,  # c
-    3: 0x07,  # d
-    4: 0x08,  # e
-    5: 0x09,  # f
-    6: 0x0A,  # g
-    7: 0x0B,  # h
-    8: 0x0C,  # i
-    9: 0x0D,  # j
+    0: (0x01, 0x3A), # CTRL + F1
+    1: (0x01, 0x3B), # CTRL + F2
+    2: (0x01, 0x3C), # CTRL + F3
+    3: (0x01, 0x3D), # CTRL + F4
+    4: (0x01, 0x3E), # CTRL + F5
+    5: (0x01, 0x3F), # CTRL + F6
 }
-
-
-class Encoder:
-    def __init__(self, clk, dt, sw=None):
-        self.clk = Pin(clk, Pin.IN, Pin.PULL_UP)
-        self.dt  = Pin(dt,  Pin.IN, Pin.PULL_UP)
-        self.sw  = Pin(sw,  Pin.IN, Pin.PULL_UP) if sw else None
-        self.last_state = self.clk.value() << 1 | self.dt.value()
-        self.position = 0
-
-    def poll(self):
-        state = self.clk.value() << 1 | self.dt.value()
-        if state != self.last_state:
-            # 00->01 (CW) or 10->11 etc.
-            diff = (state - self.last_state) & 0x03
-            if diff == 1:          # CW
-                self.position += 1
-            elif diff == 3:        # CCW
-                self.position -= 1
-            self.last_state = state
-        # optional push‑button
-        if self.sw and self.sw.value() == 0:
-            return 'click'
-        return None
-
-
 
 
 def send_key(keycode, mods=0):
@@ -55,28 +45,10 @@ def send_key(keycode, mods=0):
     kbd.send(0, 0, 0)
 
 
-last_encoder_pos = encoder.position
 while True:
     # Buttons
     for i, btn in enumerate(BUTTONS):
         if btn.read() == 1:      # pressed
             send_key(BUTTON_MAP[i])
-
-    # Encoder rotation
-    pos = encoder.position
-    if pos != last_encoder_pos:
-        delta = pos - last_encoder_pos
-        if delta > 0:
-            # Rotate CW → send "Page Up" (0x3A)
-            send_key(0x3A)
-        else:
-            # Rotate CCW → send "Page Down" (0x3B)
-            send_key(0x3B)
-        last_encoder_pos = pos
-
-    # Encoder click (optional)
-    click = encoder.poll()
-    if click == 'click':
-        send_key(0x28)  # ENTER
 
     time.sleep_ms(5)  # small delay to reduce CPU usage
