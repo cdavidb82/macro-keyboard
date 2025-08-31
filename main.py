@@ -1,6 +1,12 @@
 import time
 from machine import Pin
-import hid
+import usb.device.keyboard
+
+
+# Simple logger for MicroPython
+def log_info(msg):
+    t = time.ticks_ms()
+    print('[INFO %dms] %s' % (t, msg))
 
 # Raspberry Pi Pico W board pin configuration
 BUTTON_PINS = [7, 8, 9, 19, 20, 21]  # 3x2 Layout
@@ -26,7 +32,7 @@ class DebouncedButton:
 
 BUTTONS = [DebouncedButton(pin) for pin in BUTTON_PINS]
 
-kbd = hid.keyboard.HIDKeyboard()
+kbd = usb.device.keyboard.KeyboardInterface()
 
 BUTTON_MAP = {
     0: (0x01, 0x3A), # CTRL + F1
@@ -38,16 +44,13 @@ BUTTON_MAP = {
 }
 
 
-def send_key(keycode, mods=0):
-    kbd.send(mods, keycode, 0)
-    time.sleep_ms(10)
-    kbd.send(0, 0, 0)
-
-
 while True:
-    # Buttons
+    states = []
     for i, btn in enumerate(BUTTONS):
+        state = btn.pin.value()
+        states.append(state)
         if btn.read() == 1:      # pressed
-            send_key(BUTTON_MAP[i])
-
-    time.sleep_ms(5)  # small delay to reduce CPU usage
+            kbd.send_keys(BUTTON_MAP[i])
+            log_info('Button %d pressed: mods=%d, keycode=%d' % (i, BUTTON_MAP[i][0], BUTTON_MAP[i][1]))
+    # log_info('Button states: %s' % states)
+    time.sleep_ms(50)  # slightly longer delay for debug output
