@@ -1,3 +1,6 @@
+# This script is for testing PIN.IN, Pin.PULL_UP values to specific pins on the Pico_W
+
+
 import time
 from machine import Pin
 
