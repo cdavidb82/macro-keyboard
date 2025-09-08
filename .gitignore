@@ -9,6 +9,11 @@ __pycache__/
 # VSCode 
 .vscode
 
+# My test files
+pico_w.py
+main_pytest.py
+code.py
+
 # CircuitPy 
 .metadata_never_index
 .Trash*
